@@ -1,0 +1,18 @@
+# iverilog 编译&安装
+'''
+sudo apt-get install gperf bison
+git clone https://github.com/steveicarus/iverilog.git 
+./configure --prefix=$PWD/../run/
+make
+make install
+'''
+iverilog版本:ed7734c795b9879d3b541d18cf0e1725080649da
+
+## 最简单例子
+. ./env.sh
+iverilog -o helloworld test/helloworld.v
+vvp helloworld
+
+
+# wujian100 仿真
+git clone https://github.com/T-head-Semi/wujian100_open.git
