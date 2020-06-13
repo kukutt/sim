@@ -16,4 +16,11 @@ vvp helloworld
 
 
 # wujian100 仿真
+mkdir -p run/toolchain/
+tar -zxvf wujian100/riscv64-elf-x86_64-20190731.tar.gz -C run/toolchain/ 
 git clone https://github.com/T-head-Semi/wujian100_open.git
+
+wujian100版本:c3e5722cb49562cf2b8af6a198ad364cbd964d2c
+
+
+./run_case -sim_tool iverilog ../case/timer/timer_test.c
