@@ -6,12 +6,17 @@ echo work dir [$homePath]
 # 检查系统工具是否安装
 function isExist(){
     if ! type $1 >/dev/null 2>&1; then
-        echo "$1 未安装";
+        echo "$1 未安装,尝试以下命令";
+        echo "sudo apt-get update";
+        echo "sudo apt-get install -y build-essential gperf bison";
         exit 1;
     fi
 
 }
 
+isExist g++;
+isExist gcc;
+isExist make;
 isExist gperf;
 isExist bison;
 
@@ -19,12 +24,12 @@ isExist bison;
 # 准备工具
 [ ! -f "$homePath/run/bin/iverilog" ] && {
     echo build iverilog
-    cd iverilog
+    cd $homePath/iverilog
     bash autoconf.sh
     ./configure --prefix=$homePath/run/
     make
     make install
-    cd ..
+    cd $homePath
 }
 
 # 准备环境
