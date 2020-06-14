@@ -1,9 +1,5 @@
 # 准备工具
-. ./env.sh // 会自动配置环境,如果提示xxx未安装使用以下命令尝试
-sudo apt-get install gperf bison
-
-## iverilog 编译&安装
-git clone https://github.com/steveicarus/iverilog.git 
+. ./env.sh
 iverilog版本:ed7734c795b9879d3b541d18cf0e1725080649da
 
 
@@ -14,11 +10,6 @@ vvp helloworld
 
 
 # wujian100 仿真
-mkdir -p run/toolchain/
-tar -zxvf wujian100/riscv64-elf-x86_64-20190731.tar.gz -C run/toolchain/ 
 git clone https://github.com/T-head-Semi/wujian100_open.git
-
 wujian100版本:c3e5722cb49562cf2b8af6a198ad364cbd964d2c
-
-
 ./run_case -sim_tool iverilog ../case/timer/timer_test.c

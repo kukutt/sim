@@ -1,6 +1,7 @@
 #!/bin/bash
 # 获取工作路径
 homePath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+workPath=$PWD
 echo work dir [$homePath]
 
 # 检查系统工具是否安装
@@ -44,4 +45,5 @@ isExist bison;
 export PATH=$homePath/run/bin:$PATH
 export LD_LIBRARY_PATH=$homePath/run/lib:$LD_LIBRARY_PATH
 export TOOL_PATH=$homePath/run/toolchain/
+cd $workPath
 echo "env set ok"
