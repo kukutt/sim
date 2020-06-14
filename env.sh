@@ -9,7 +9,7 @@ function isExist(){
     if ! type $1 >/dev/null 2>&1; then
         echo "$1 未安装,尝试以下命令";
         echo "sudo apt-get update";
-        echo "sudo apt-get install -y build-essential gperf bison";
+        echo "sudo apt-get install -y build-essential gperf bison flex";
         exit 1;
     fi
 
@@ -20,6 +20,7 @@ isExist gcc;
 isExist make;
 isExist gperf;
 isExist bison;
+isExist flex;
 
 
 # 准备工具
