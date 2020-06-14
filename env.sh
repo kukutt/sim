@@ -32,6 +32,14 @@ isExist bison;
     cd $homePath
 }
 
+
+[ ! -f "$homePath/run/toolchain/bin/riscv64-unknown-elf-gcc" ] && {
+    echo gen toolchain for riscv
+    # 打包命令：split -b 10m riscv64-elf-x86_64-20190731.tar.gz toolchain/riscv64-elf-x86_64-20190731.tar.gz_
+    mkdir $homePath/run/toolchain/
+    cat $homePath/wujian100/toolchain/riscv64-elf-x86_64-20190731.tar.gz_* | tar zxv -C $homePath/run/toolchain/
+}
+
 # 准备环境
 export PATH=$homePath/run/bin:$PATH
 export LD_LIBRARY_PATH=$homePath/run/lib:$LD_LIBRARY_PATH
