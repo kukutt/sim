@@ -43,7 +43,7 @@ isExist flex;
 }
 
 # 准备环境
-export PATH=$homePath/run/bin:$PATH
+export PATH=$homePath/run/bin:$homePath/run/toolchain/bin/:$PATH
 export LD_LIBRARY_PATH=$homePath/run/lib:$LD_LIBRARY_PATH
 export TOOL_PATH=$homePath/run/toolchain/
 cd $workPath

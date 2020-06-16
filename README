@@ -4,12 +4,10 @@ iverilog版本:ed7734c795b9879d3b541d18cf0e1725080649da
 
 
 # 最简单例子
-. ./env.sh
 iverilog -o helloworld test/helloworld.v
 vvp helloworld
 
 
 # wujian100 仿真
-git clone https://github.com/T-head-Semi/wujian100_open.git
-wujian100版本:c3e5722cb49562cf2b8af6a198ad364cbd964d2c
-./run_case -sim_tool iverilog ../case/timer/timer_test.c
+执行wujian100/里面的build文件 : ./wujian100/build.sh 
+
