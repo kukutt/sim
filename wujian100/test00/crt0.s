@@ -28,17 +28,6 @@ __start:
   li  x13,0
   li  x14,0
   li  x15,0
-  li  x13,0x2001fff0
-  li  x14,0x30
-  sw  x14,0(x13)
-  sw  x14,0(x13)
-  sw  x14,0(x13)
-  sw  x14,0(x13)
-  sw  x14,0(x13)
-  sw  x14,0(x13)
-  sw  x14,0(x13)
-  sw  x14,0(x13)
-  sw  x14,0(x13)
 
   la  x2, __kernel_stack
   la  x3,__kernel_stack
@@ -54,7 +43,25 @@ __start:
   csrw mtvec, x3  
 
 __to_main:
-	jal	main
+  jal __print
+  jal main
+
+__print:
+  li  x13,0x2001fff0
+  li  x14,0x38
+  sw  x14,0(x13)
+  sw  x14,0(x13)
+  sw  x14,0(x13)
+  sw  x14,0(x13)
+  sw  x14,0(x13)
+  sw  x14,0(x13)
+  sw  x14,0(x13)
+  sw  x14,0(x13)
+  li  x14,0x0a
+  sw  x14,0(x13)
+  li  x14,0x0d
+  sw  x14,0(x13)
+  ret
 
   .global __fail
 __fail:
