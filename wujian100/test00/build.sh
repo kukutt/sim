@@ -35,12 +35,14 @@ C_SRC+="$WORKDIR/../test00/timer_test.c "
 build1="riscv64-unknown-elf-gcc -c -march=rv32emcxcki -mabi=ilp32e -De902 -Wa,--defsym=e902=1 -O3 -funroll-all-loops -fgcse-sm -finline-limit=500 -fno-schedule-insns -ffunction-sections -fdata-sections -o crt0.o $S_SRC"
 build2="riscv64-unknown-elf-gcc -T$WORKDIR/lib/linker.lcf -nostartfiles -march=rv32emcxcki -mabi=ilp32e -De902 -O3 -funroll-all-loops -fgcse-sm -finline-limit=500 -fno-schedule-insns -ffunction-sections -fdata-sections -lc -lgcc -I $WORKDIR/lib/clib/  crt0.o $C_SRC -o timer_test.elf -lm"
 pack1="riscv64-unknown-elf-objcopy -O srec timer_test.elf timer_test.hex"
-pack2="$homePath/../Srec2vmem.py -i timer_test.hex -o test.pat"
+pack2="riscv64-unknown-elf-objdump -S -d timer_test.elf"
+pack3="$homePath/../Srec2vmem.py -i timer_test.hex -o test.pat"
 
 echo "[build1]" $build1 && $build1
 echo "[build2]" $build2 && $build2
 echo "[pack1]" $pack1 && $pack1
-echo "[pack2]" $pack2 && $pack2
+echo "[pack2]" $pack2 " > dump.txt" && $pack2 > dump.txt
+echo "[pack3]" $pack3 && $pack3
 rm -rf *.o *.elf *.obj *.hex
 
 # 仿真
