@@ -7,8 +7,8 @@ rm -rf *.o *.pat *.elf *.obj *.hex
 
 # 环境配置
 homePath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WORKDIR="$homePath/src"
-S_SRC="$WORKDIR/lib/crt0.s "
+WORKDIR="$homePath/../src"
+S_SRC="$WORKDIR/../test00/crt0.s "
 C_SRC="$WORKDIR/lib/newlib_wrap/__isnan.c "
 C_SRC+="$WORKDIR/lib/newlib_wrap/vprintf.c "
 C_SRC+="$WORKDIR/lib/newlib_wrap/sprintf.c "
@@ -25,17 +25,17 @@ C_SRC+="$WORKDIR/lib/newlib_wrap/vsnprintf.c "
 C_SRC+="$WORKDIR/lib/newlib_wrap/__dtostr.c "
 C_SRC+="$WORKDIR/lib/newlib_wrap/vfprintf.c "
 C_SRC+="$WORKDIR/lib/newlib_wrap/puts.c "
-C_SRC+="$WORKDIR/lib/clib/fputc.c "
+C_SRC+="$WORKDIR/../test00/fputc.c "
 C_SRC+="$WORKDIR/lib/newlib_wrap/__isinf.c "
 C_SRC+="$WORKDIR/lib/newlib_wrap/putchar.c "
 C_SRC+="$WORKDIR/lib/newlib_wrap/__ltostr.c "
-C_SRC+="$WORKDIR/case/timer/timer_test.c "
+C_SRC+="$WORKDIR/../test00/timer_test.c "
 
 # 编译&打包
 build1="riscv64-unknown-elf-gcc -c -march=rv32emcxcki -mabi=ilp32e -De902 -Wa,--defsym=e902=1 -O3 -funroll-all-loops -fgcse-sm -finline-limit=500 -fno-schedule-insns -ffunction-sections -fdata-sections -o crt0.o $S_SRC"
 build2="riscv64-unknown-elf-gcc -T$WORKDIR/lib/linker.lcf -nostartfiles -march=rv32emcxcki -mabi=ilp32e -De902 -O3 -funroll-all-loops -fgcse-sm -finline-limit=500 -fno-schedule-insns -ffunction-sections -fdata-sections -lc -lgcc -I $WORKDIR/lib/clib/  crt0.o $C_SRC -o timer_test.elf -lm"
 pack1="riscv64-unknown-elf-objcopy -O srec timer_test.elf timer_test.hex"
-pack2="$homePath/Srec2vmem.py -i timer_test.hex -o test.pat"
+pack2="$homePath/../Srec2vmem.py -i timer_test.hex -o test.pat"
 
 echo "[build1]" $build1 && $build1
 echo "[build2]" $build2 && $build2
